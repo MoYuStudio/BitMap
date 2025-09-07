@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://l14l86qwqkws"]
+[gd_scene load_steps=13 format=3 uid="uid://l14l86qwqkws"]
 
 [ext_resource type="TileSet" uid="uid://cxftojto2pcc2" path="res://assets/tile_set.tres" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dteak71k8ajlu" path="res://src/module/terrain_layer.gd" id="2_terrain"]
@@ -7,7 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://hkctoo2ksjb1" path="res://assets/cursor.png" id="5_1bvp3"]
 [ext_resource type="Script" uid="uid://dmdy67vymyb6c" path="res://src/module/cursor_controller.gd" id="6_cursor"]
 [ext_resource type="Script" uid="uid://chf30juptw8gv" path="res://src/module/building_selector.gd" id="7_selector"]
-[ext_resource type="Script" uid="uid://b8x5x3wki18w6" path="res://src/module/railway_layer.gd" id="8_railway"]
+[ext_resource type="Script" uid="uid://dbhbmwdvbn7pv" path="res://src/module/road_layer.gd" id="8_road"]
+[ext_resource type="Texture2D" uid="uid://g312tc388wh3" path="res://assets/city.png" id="9_city_icon"]
+[ext_resource type="Texture2D" uid="uid://dmnglur0eah4x" path="res://assets/railway.png" id="10_railway_icon"]
+[ext_resource type="Texture2D" uid="uid://b3fne5t8y1wc3" path="res://assets/highway.png" id="11_highway_icon"]
+[ext_resource type="Texture2D" uid="uid://chb5033atl8y" path="res://assets/road.png" id="12_road_icon"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,8 +19,8 @@
 tile_set = ExtResource("1_ig7tw")
 script = ExtResource("2_terrain")
 
-[node name="RailwayLayer" type="Node2D" parent="."]
-script = ExtResource("8_railway")
+[node name="RoadLayer" type="Node2D" parent="."]
+script = ExtResource("8_road")
 
 [node name="CityLayer" type="Node2D" parent="."]
 script = ExtResource("3_city")
@@ -70,6 +74,25 @@ layout_mode = 2
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 text = "城市"
+icon = ExtResource("9_city_icon")
+
+[node name="RailwayButton" type="Button" parent="CanvasLayer/UI/VBoxContainer/BuildingContainer"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+text = "铁路"
+icon = ExtResource("10_railway_icon")
+
+[node name="HighwayButton" type="Button" parent="CanvasLayer/UI/VBoxContainer/BuildingContainer"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+text = "高速"
+icon = ExtResource("11_highway_icon")
+
+[node name="RoadButton" type="Button" parent="CanvasLayer/UI/VBoxContainer/BuildingContainer"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+text = "公路"
+icon = ExtResource("12_road_icon")
 
 [node name="ModeLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
@@ -79,17 +102,12 @@ text = "建造模式:"
 [node name="ModeContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
 
-[node name="ClickButton" type="Button" parent="CanvasLayer/UI/VBoxContainer/ModeContainer"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-text = "点击模式"
-
 [node name="PaintButton" type="Button" parent="CanvasLayer/UI/VBoxContainer/ModeContainer"]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 text = "绘制模式"
 
-[node name="RailwayButton" type="Button" parent="CanvasLayer/UI/VBoxContainer/ModeContainer"]
+[node name="RoadButton" type="Button" parent="CanvasLayer/UI/VBoxContainer/ModeContainer"]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
-text = "铁路模式"
+text = "道路模式"

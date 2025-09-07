@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ixrpdldpy57j"
-path="res://.godot/imported/stone.png-ae10107986eb96351803aa1a204ff8c8.ctex"
+uid="uid://b3fne5t8y1wc3"
+path="res://.godot/imported/highway.png-096b64a49b3c7efb513a2809cc44187f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile/stone.png"
-dest_files=["res://.godot/imported/stone.png-ae10107986eb96351803aa1a204ff8c8.ctex"]
+source_file="res://assets/highway.png"
+dest_files=["res://.godot/imported/highway.png-096b64a49b3c7efb513a2809cc44187f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djhh0xr81c65o"
-path="res://.godot/imported/snow.png-b74abbdfa1c82d155fdcb2c8b6954950.ctex"
+uid="uid://chb5033atl8y"
+path="res://.godot/imported/road.png-72005ad96a94b3869b023c4f4a0b0b7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile/snow.png"
-dest_files=["res://.godot/imported/snow.png-b74abbdfa1c82d155fdcb2c8b6954950.ctex"]
+source_file="res://assets/road.png"
+dest_files=["res://.godot/imported/road.png-72005ad96a94b3869b023c4f4a0b0b7d.ctex"]
 
 [params]
 
