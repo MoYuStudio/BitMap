@@ -68,8 +68,11 @@ text = "[center][b]BitMap 像素地图编辑器[/b][/center]
 [color=cyan][b]鼠标控制[/b][/color]
 • [b]左键[/b]：放置城市或绘制道路
 • [b]右键[/b]：移除城市或删除道路
-• [b]滚轮[/b]：缩放地图
-• [b]拖拽[/b]：移动视角
+
+[color=cyan][b]视角控制[/b][/color]
+• [b]WASD[/b]：移动视角
+• [b]Q键[/b]：放大地图
+• [b]E键[/b]：缩小地图
 
 [color=cyan][b]建造模式[/b][/color]
 • [b]绘制模式[/b]：
