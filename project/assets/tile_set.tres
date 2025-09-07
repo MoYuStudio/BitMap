@@ -1,40 +1,52 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://cxftojto2pcc2"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://cxftojto2pcc2"]
 
-[ext_resource type="Texture2D" uid="uid://dsfe7f21mquwr" path="res://assets/tile/grass.png" id="1_06xp3"]
-[ext_resource type="Texture2D" uid="uid://mlhg5rwo7ccs" path="res://assets/tile/water.png" id="2_qumku"]
-[ext_resource type="Texture2D" uid="uid://g312tc388wh3" path="res://assets/city.png" id="3_5pofp"]
-[ext_resource type="Texture2D" uid="uid://ixrpdldpy57j" path="res://assets/tile/stone.png" id="4_dcmha"]
-[ext_resource type="Texture2D" uid="uid://djhh0xr81c65o" path="res://assets/tile/snow.png" id="5_ycv0v"]
-[ext_resource type="Texture2D" uid="uid://c5etwajy4dxvl" path="res://assets/tile/deep_water.png" id="6_fwhb7"]
+[ext_resource type="Texture2D" uid="uid://b1vk2u82ynurs" path="res://assets/height_tiles/height_0.png" id="1_height_0"]
+[ext_resource type="Texture2D" uid="uid://bs6qaijqa7u0i" path="res://assets/height_tiles/height_1.png" id="2_height_1"]
+[ext_resource type="Texture2D" uid="uid://drt7ojujxjbmn" path="res://assets/height_tiles/height_2.png" id="3_height_2"]
+[ext_resource type="Texture2D" uid="uid://dkijae1a03awe" path="res://assets/height_tiles/height_3.png" id="4_height_3"]
+[ext_resource type="Texture2D" uid="uid://cf1rroabes1yv" path="res://assets/height_tiles/height_4.png" id="5_height_4"]
+[ext_resource type="Texture2D" uid="uid://0xn2a3j3peve" path="res://assets/height_tiles/height_5.png" id="6_height_5"]
+[ext_resource type="Texture2D" uid="uid://bpefte21j5dkh" path="res://assets/height_tiles/height_6.png" id="7_height_6"]
+[ext_resource type="Texture2D" uid="uid://1vmfrcfv2q7n" path="res://assets/height_tiles/height_7.png" id="8_height_7"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_06xp3"]
-texture = ExtResource("1_06xp3")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_height_0"]
+texture = ExtResource("1_height_0")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qumku"]
-texture = ExtResource("2_qumku")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_height_1"]
+texture = ExtResource("2_height_1")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4q4jd"]
-texture = ExtResource("3_5pofp")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_height_2"]
+texture = ExtResource("3_height_2")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5pofp"]
-texture = ExtResource("4_dcmha")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_height_3"]
+texture = ExtResource("4_height_3")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dcmha"]
-texture = ExtResource("5_ycv0v")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_height_4"]
+texture = ExtResource("5_height_4")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ycv0v"]
-texture = ExtResource("6_fwhb7")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_height_5"]
+texture = ExtResource("6_height_5")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_height_6"]
+texture = ExtResource("7_height_6")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_height_7"]
+texture = ExtResource("8_height_7")
 0:0/0 = 0
 
 [resource]
-sources/0 = SubResource("TileSetAtlasSource_06xp3")
-sources/1 = SubResource("TileSetAtlasSource_qumku")
-sources/3 = SubResource("TileSetAtlasSource_5pofp")
-sources/4 = SubResource("TileSetAtlasSource_dcmha")
-sources/5 = SubResource("TileSetAtlasSource_ycv0v")
-sources/2 = SubResource("TileSetAtlasSource_4q4jd")
+sources/0 = SubResource("TileSetAtlasSource_height_0")
+sources/1 = SubResource("TileSetAtlasSource_height_1")
+sources/2 = SubResource("TileSetAtlasSource_height_2")
+sources/3 = SubResource("TileSetAtlasSource_height_3")
+sources/4 = SubResource("TileSetAtlasSource_height_4")
+sources/5 = SubResource("TileSetAtlasSource_height_5")
+sources/6 = SubResource("TileSetAtlasSource_height_6")
+sources/7 = SubResource("TileSetAtlasSource_height_7")
