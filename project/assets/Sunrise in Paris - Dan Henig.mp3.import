@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://biqr1w23y3amc"
+path="res://.godot/imported/Sunrise in Paris - Dan Henig.mp3-4d2842fb03d34ee3a203b25563a74fb6.mp3str"
+
+[deps]
+
+source_file="res://assets/Sunrise in Paris - Dan Henig.mp3"
+dest_files=["res://.godot/imported/Sunrise in Paris - Dan Henig.mp3-4d2842fb03d34ee3a203b25563a74fb6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

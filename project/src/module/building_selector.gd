@@ -30,13 +30,13 @@ signal road_type_changed(road_type: Road.RoadType)
 
 func _ready():
 	# 获取UI节点引用
-	ui_control = get_node("UI")
-	city_button = get_node("UI/VBoxContainer/BuildingContainer/CityButton")
-	railway_button = get_node("UI/VBoxContainer/BuildingContainer/RailwayButton")
-	highway_button = get_node("UI/VBoxContainer/BuildingContainer/HighwayButton")
-	road_button = get_node("UI/VBoxContainer/BuildingContainer/RoadButton")
-	paint_button = get_node("UI/VBoxContainer/ModeContainer/PaintButton")
-	road_mode_button = get_node("UI/VBoxContainer/ModeContainer/RoadButton")
+	ui_control = get_node("Selector")
+	city_button = get_node("Selector/VBoxContainer/BuildingContainer/CityButton")
+	railway_button = get_node("Selector/VBoxContainer/BuildingContainer/RailwayButton")
+	highway_button = get_node("Selector/VBoxContainer/BuildingContainer/HighwayButton")
+	road_button = get_node("Selector/VBoxContainer/BuildingContainer/RoadButton")
+	paint_button = get_node("Selector/VBoxContainer/ModeContainer/PaintButton")
+	road_mode_button = get_node("Selector/VBoxContainer/ModeContainer/RoadButton")
 	
 	# 连接按钮信号
 	connect_buttons()
@@ -87,6 +87,7 @@ func _on_mode_button_pressed(mode: BuildMode):
 		BuildMode.ROAD:
 			mode_name = "道路模式"
 	print("切换模式: ", mode_name)
+	print("发送信号 mode_changed: ", mode)
 
 func update_ui_state():
 	# 更新模式按钮状态
@@ -131,5 +132,17 @@ func is_mouse_over_ui() -> bool:
 	
 	# 获取鼠标位置（相对于CanvasLayer）
 	var mouse_pos = get_viewport().get_mouse_position()
-	var ui_rect = Rect2(ui_control.position, ui_control.size)
-	return ui_rect.has_point(mouse_pos)
+	
+	# 检查Selector区域
+	var selector_rect = Rect2(ui_control.position, ui_control.size)
+	if selector_rect.has_point(mouse_pos):
+		return true
+	
+	# 检查TopPanel区域
+	var top_panel = get_node("TopPanel")
+	if top_panel:
+		var top_panel_rect = Rect2(top_panel.position, top_panel.size)
+		if top_panel_rect.has_point(mouse_pos):
+			return true
+	
+	return false

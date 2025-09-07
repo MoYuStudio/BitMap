@@ -83,6 +83,10 @@ func get_all_cities() -> Dictionary:
 	# 获取所有城市
 	return cities
 
+func get_city_count() -> int:
+	# 获取城市数量
+	return cities.size()
+
 func get_random_city_name() -> String:
 	# 从词库中随机选择一个城市名称
 	var used_names = []

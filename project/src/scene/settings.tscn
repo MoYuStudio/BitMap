@@ -1,0 +1,180 @@
+[gd_scene load_steps=2 format=3 uid="uid://day8k7m6n5p4q"]
+
+[ext_resource type="Script" uid="uid://c7hugscohv4n" path="res://src/scene/settings.gd" id="1_settings"]
+
+[node name="SettingsScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_settings")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.2, 0.25, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "游戏设置"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AudioContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AudioLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "音频设置"
+
+[node name="MasterVolumeContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MasterVolumeContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "主音量: 100%"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MasterVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFXVolumeContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+
+[node name="SFXVolumeLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/SFXVolumeContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "音效: 100%"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/SFXVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MusicVolumeContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "音乐: 100%"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/AudioContainer/MusicVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="GraphicsContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GraphicsLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "图形设置"
+
+[node name="FullscreenContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsContainer"]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsContainer/FullscreenContainer"]
+layout_mode = 2
+text = "全屏模式"
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsContainer/FullscreenContainer"]
+layout_mode = 2
+
+[node name="VSyncContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsContainer"]
+layout_mode = 2
+
+[node name="VSyncLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsContainer/VSyncContainer"]
+layout_mode = 2
+text = "垂直同步"
+
+[node name="VSyncCheckBox" type="CheckBox" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsContainer/VSyncContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="GameplayContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GameplayLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GameplayContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "游戏设置"
+
+[node name="TerrainQualityContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GameplayContainer"]
+layout_mode = 2
+
+[node name="TerrainQualityLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GameplayContainer/TerrainQualityContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "地形质量: 高"
+
+[node name="TerrainQualitySlider" type="HSlider" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GameplayContainer/TerrainQualityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="CityDensityContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GameplayContainer"]
+layout_mode = 2
+
+[node name="CityDensityLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GameplayContainer/CityDensityContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "城市密度: 中等"
+
+[node name="CityDensitySlider" type="HSlider" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/GameplayContainer/CityDensityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "返回主菜单"

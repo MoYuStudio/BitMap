@@ -29,12 +29,15 @@ func _ready():
 	terrain_layer = get_node("../TerrainLayer")
 	city_layer = get_node("../CityLayer")
 	road_layer = get_node("../RoadLayer")
-	building_selector = get_node("../CanvasLayer")
+	building_selector = get_node("../../CanvasLayer")
 	
 	# 连接建筑选择器的信号
 	if building_selector:
 		building_selector.mode_changed.connect(_on_build_mode_changed)
 		building_selector.road_type_changed.connect(_on_road_type_changed)
+		print("成功连接到建筑选择器信号")
+	else:
+		print("错误：无法找到建筑选择器")
 	
 	# 设置输入监听
 	set_process_input(true)

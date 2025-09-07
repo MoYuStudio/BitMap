@@ -496,6 +496,10 @@ func get_current_road_type() -> Road.RoadType:
 	"""获取当前道路类型"""
 	return current_road_type
 
+func get_road_count() -> int:
+	"""获取道路数量"""
+	return roads.size()
+
 func get_all_roads() -> Array[Road]:
 	"""获取所有道路"""
 	return roads
