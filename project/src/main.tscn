@@ -1,7 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://b43y3wn6howad"]
+[gd_scene load_steps=3 format=3 uid="uid://b43y3wn6howad"]
 
-[ext_resource type="PackedScene" uid="uid://cq7r7qskvm0a8" path="res://src/scene/scene_manager.tscn" id="1_scene_manager"]
+[ext_resource type="PackedScene" uid="uid://b1o6fcsmypffo" path="res://src/scene/scene_controller.tscn" id="1_controller"]
+[ext_resource type="AudioStream" uid="uid://biqr1w23y3amc" path="res://assets/Sunrise in Paris - Dan Henig.mp3" id="2_gh0ne"]
 
 [node name="Main" type="Node"]
 
-[node name="SceneManager" parent="." instance=ExtResource("1_scene_manager")]
+[node name="SceneController" parent="." instance=ExtResource("1_controller")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gh0ne")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

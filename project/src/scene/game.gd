@@ -1,5 +1,8 @@
 extends Control
 
+# 信号定义
+signal back_to_menu
+
 # 游戏控制变量
 var is_paused = false
 var game_start_time: float
@@ -47,7 +50,7 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		# 恢复鼠标光标显示
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().change_scene_to_file("res://src/scene/menu.tscn")
+		back_to_menu.emit()
 	
 	# 处理P键暂停游戏
 	if event.is_action_pressed("ui_accept") and event.keycode == KEY_P:
@@ -61,7 +64,7 @@ func toggle_pause():
 func _on_back_to_menu():
 	# 恢复鼠标光标显示
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file("res://src/scene/menu.tscn")
+	back_to_menu.emit()
 
 # UI更新函数
 func update_time_display():

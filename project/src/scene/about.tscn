@@ -57,7 +57,41 @@ size_flags_vertical = 3
 bbcode_enabled = true
 text = "[center][b]BitMap 像素地图编辑器[/b][/center]
 
-[center]MoYuStudio出品"
+[color=yellow][b]操作指南[/b][/color]
+
+[color=cyan][b]基础操作[/b][/color]
+• [b]生成地形[/b]: 按 [color=white]1[/color] 键生成新的随机地形地图
+• [b]游戏控制[/b]:
+  - [color=white]ESC[/color] 键：返回主菜单
+  - [color=white]P[/color] 键：暂停/继续游戏
+
+[color=cyan][b]鼠标控制[/b][/color]
+• [b]左键[/b]：放置城市或绘制道路
+• [b]右键[/b]：移除城市或删除道路
+• [b]滚轮[/b]：缩放地图
+• [b]拖拽[/b]：移动视角
+
+[color=cyan][b]建造模式[/b][/color]
+• [b]绘制模式[/b]：
+  - 按住鼠标左键拖拽连续放置城市
+  - 按住鼠标右键拖拽连续移除城市
+  - 适合快速大面积建造
+
+• [b]道路模式[/b]：
+  - 左键点击开始绘制道路（铁路、高速公路或公路）
+  - 继续左键点击添加中间点
+  - 再次左键点击城市或空白处结束绘制
+  - 右键取消当前道路绘制
+  - 按住右键拖拽可以连续删除多条道路
+
+[color=cyan][b]地形系统[/b][/color]
+支持8级高度图地形：深海、深水、浅水、海岸、平原、丘陵、山地、高山
+
+[color=cyan][b]城市系统[/b][/color]
+• 使用中国古典风格名称
+• 每个城市都有唯一名称，避免重复
+• 支持点击城市进行交互
+• 城市可以连接到道路网络"
 
 [node name="VersionLabel" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -70,7 +104,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 16
-text = "更新时间: 2025年9月"
+text = "MoYuStudio 荣誉出品"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer"]

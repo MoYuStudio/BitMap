@@ -1,5 +1,8 @@
 extends Control
 
+# 信号定义
+signal back_to_menu
+
 func _ready():
 	# 连接按钮信号
 	$CanvasLayer/VBoxContainer/BackButton.pressed.connect(_on_back_button_pressed)
@@ -9,4 +12,4 @@ func _ready():
 	$CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/UpdateLabel.text = "更新时间: 2025年9月"
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file("res://src/scene/menu.tscn")
+	back_to_menu.emit()

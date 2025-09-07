@@ -1,5 +1,8 @@
 extends Control
 
+# 信号定义
+signal back_to_menu
+
 # 设置项
 var settings = {
 	"master_volume": 1.0,
@@ -30,7 +33,7 @@ func _ready():
 
 func _on_back_button_pressed():
 	save_settings()
-	get_tree().change_scene_to_file("res://src/scene/menu.tscn")
+	back_to_menu.emit()
 
 func _on_master_volume_changed(value: float):
 	settings.master_volume = value
