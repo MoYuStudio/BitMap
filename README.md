@@ -20,7 +20,7 @@
 
 ## 📸 游戏截图
 
-![BitMap游戏界面 v1.0.0](v1.png)
+![BitMap游戏界面 v1.0.0](https://github.com/MoYuStudio/BitMap/blob/main/doc/v1.png)
 
 *📅 **截图时间**: 2024年12月*  
 *🏷️ **版本**: v1.0.0*  
