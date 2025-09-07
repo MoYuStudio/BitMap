@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8x7k2m3n4p5q"]
+[gd_scene load_steps=3 format=3 uid="uid://b8x7k2m3n4p5q"]
 
 [ext_resource type="Script" uid="uid://dxqtayhynaamc" path="res://src/scene/menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://dmo1f1f7hwx0m" path="res://assets/icon.svg" id="2_8yeyh"]
 
 [node name="MenuScene" type="Control"]
 layout_mode = 3
@@ -19,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.3, 0.4, 1)
+color = Color(1, 0.8, 0.501961, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
@@ -34,6 +35,11 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Icon" type="Sprite2D" parent="CanvasLayer/VBoxContainer"]
+position = Vector2(150, -60)
+scale = Vector2(6, 6)
+texture = ExtResource("2_8yeyh")
+
 [node name="TitleLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -43,7 +49,6 @@ horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 16
 text = "像素地图编辑器"
 horizontal_alignment = 1

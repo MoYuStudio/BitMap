@@ -10,13 +10,15 @@ config_version=5
 
 [application]
 
-config/name="project"
+config/name="BitMap 像素地图编辑器"
 run/main_scene="uid://b43y3wn6howad"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
+config/icon="uid://cv2tg1yma4qus"
+config/windows_native_icon="res://assets/icon.ico"
 
 [display]
 
