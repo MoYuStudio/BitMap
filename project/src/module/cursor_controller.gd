@@ -9,7 +9,8 @@ var building_selector: CanvasLayer
 # 建造模式
 enum BuildMode {
 	PAINT,    # 绘制模式
-	ROAD      # 道路模式
+	ROAD,     # 道路模式
+	DELETE    # 删除模式
 }
 var current_build_mode = BuildMode.PAINT
 
@@ -42,7 +43,7 @@ func _ready():
 	# 设置输入监听
 	set_process_input(true)
 
-func _process(delta):
+func _process(_delta):
 	# 让光标跟随鼠标位置
 	var mouse_pos = get_global_mouse_position()
 	
@@ -60,8 +61,8 @@ func _process(delta):
 		# 处理道路绘制
 		handle_road_drawing(mouse_pos)
 		
-		# 处理道路模式下的右键拖拽删除
-		handle_road_erasing(mouse_pos)
+		# 处理删除模式
+		handle_delete_mode(tile_pos)
 	else:
 		global_position = mouse_pos
 
@@ -100,18 +101,14 @@ func handle_continuous_drawing(tile_pos: Vector2i):
 	if tile_pos == last_processed_tile:
 		return
 	
-	# 检查是否有鼠标按下
+	# 检查是否有鼠标按下（只处理左键，移除右键删除功能）
 	if is_left_mouse_pressed and city_layer:
 		city_layer.place_city_at_position(tile_pos)
 		last_processed_tile = tile_pos
 		print("连续绘制: 在位置 ", tile_pos, " 放置城市")
-	elif is_right_mouse_pressed and city_layer:
-		city_layer.remove_city_at_position(tile_pos)
-		last_processed_tile = tile_pos
-		print("连续擦除: 在位置 ", tile_pos, " 移除城市")
 
 
-func handle_road_drawing(mouse_pos: Vector2):
+func handle_road_drawing(_mouse_pos: Vector2):
 	"""处理道路绘制（实时更新预览）"""
 	if current_build_mode != BuildMode.ROAD or not road_layer:
 		return
@@ -151,10 +148,10 @@ func cancel_road_drawing():
 		road_layer.end_road_drawing()
 		print("取消了道路绘制")
 
-func handle_road_erasing(mouse_pos: Vector2):
-	"""处理道路模式下的右键拖拽删除"""
-	# 只在道路模式下处理道路删除
-	if current_build_mode != BuildMode.ROAD or not road_layer:
+func handle_delete_mode(tile_pos: Vector2i):
+	"""处理删除模式"""
+	# 只在删除模式下处理删除
+	if current_build_mode != BuildMode.DELETE:
 		return
 	
 	# 检查是否在UI区域内，如果是则不处理地图操作
@@ -162,16 +159,22 @@ func handle_road_erasing(mouse_pos: Vector2):
 		return
 	
 	# 避免重复操作同一位置
-	var mouse_tile = terrain_layer.local_to_map(terrain_layer.to_local(mouse_pos))
-	if mouse_tile == last_processed_tile:
+	if tile_pos == last_processed_tile:
 		return
 	
-	# 检查是否有右键按下
-	if is_right_mouse_pressed:
-		# 删除道路
-		if road_layer.remove_road_at_position(mouse_pos):
-			last_processed_tile = mouse_tile
-			print("连续擦除: 在位置 ", mouse_pos, " 移除道路")
+	# 检查是否有左键按下
+	if is_left_mouse_pressed:
+		var mouse_pos = get_global_mouse_position()
+		
+		# 优先删除道路（如果点击在道路上）
+		if road_layer and road_layer.remove_road_at_position(mouse_pos):
+			last_processed_tile = tile_pos
+			print("删除模式: 在位置 ", mouse_pos, " 移除道路")
+		# 如果没有道路，尝试删除城市
+		elif city_layer and city_layer.get_city_at_position(tile_pos):
+			city_layer.remove_city_at_position(tile_pos)
+			last_processed_tile = tile_pos
+			print("删除模式: 在位置 ", tile_pos, " 移除城市")
 
 func _on_build_mode_changed(new_mode):
 	# 更新建造模式
@@ -187,6 +190,8 @@ func _on_build_mode_changed(new_mode):
 			mode_name = "绘制"
 		BuildMode.ROAD:
 			mode_name = "道路"
+		BuildMode.DELETE:
+			mode_name = "删除"
 	
 	print("建造模式切换为: ", mode_name)
 	print("当前模式: ", current_build_mode)

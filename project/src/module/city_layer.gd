@@ -75,7 +75,7 @@ func clear_all_cities():
 	city_counter = 0
 	print("清除了所有城市")
 
-func get_city_at_position(tile_position: Vector2i) -> Sprite2D:
+func get_city_at_position(tile_position: Vector2i) -> Node2D:
 	# 获取指定位置的城市实例
 	return cities.get(tile_position, null)
 

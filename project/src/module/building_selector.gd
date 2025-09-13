@@ -3,7 +3,8 @@ extends CanvasLayer
 # 建造模式枚举
 enum BuildMode {
 	PAINT,     # 绘制模式
-	ROAD       # 道路模式
+	ROAD,      # 道路模式
+	DELETE     # 删除模式
 }
 
 # 当前选择的模式
@@ -17,6 +18,7 @@ var highway_button: Button
 var road_button: Button
 var paint_button: Button
 var road_mode_button: Button
+var delete_button: Button
 
 # 城市瓦片的source_id
 const CITY_SOURCE_ID = 2
@@ -37,6 +39,7 @@ func _ready():
 	road_button = get_node("Selector/VBoxContainer/BuildingContainer/RoadButton")
 	paint_button = get_node("Selector/VBoxContainer/ModeContainer/PaintButton")
 	road_mode_button = get_node("Selector/VBoxContainer/ModeContainer/RoadButton")
+	delete_button = get_node("Selector/VBoxContainer/ModeContainer/DeleteButton")
 	
 	# 连接按钮信号
 	connect_buttons()
@@ -54,6 +57,7 @@ func connect_buttons():
 	# 连接模式选择按钮
 	paint_button.pressed.connect(_on_mode_button_pressed.bind(BuildMode.PAINT))
 	road_mode_button.pressed.connect(_on_mode_button_pressed.bind(BuildMode.ROAD))
+	delete_button.pressed.connect(_on_mode_button_pressed.bind(BuildMode.DELETE))
 
 func _on_city_button_pressed():
 	print("选择建筑: 城市")
@@ -86,6 +90,8 @@ func _on_mode_button_pressed(mode: BuildMode):
 			mode_name = "绘制模式"
 		BuildMode.ROAD:
 			mode_name = "道路模式"
+		BuildMode.DELETE:
+			mode_name = "删除模式"
 	print("切换模式: ", mode_name)
 	print("发送信号 mode_changed: ", mode)
 
@@ -93,6 +99,7 @@ func update_ui_state():
 	# 更新模式按钮状态
 	paint_button.modulate = Color.WHITE if current_mode == BuildMode.PAINT else Color.GRAY
 	road_mode_button.modulate = Color.WHITE if current_mode == BuildMode.ROAD else Color.GRAY
+	delete_button.modulate = Color.WHITE if current_mode == BuildMode.DELETE else Color.GRAY
 	
 	# 根据模式显示/隐藏建筑类型按钮
 	match current_mode:
@@ -109,6 +116,12 @@ func update_ui_state():
 			highway_button.visible = true
 			road_button.visible = true
 			update_road_type_ui()
+		BuildMode.DELETE:
+			# 删除模式：隐藏所有建筑类型按钮
+			city_button.visible = false
+			railway_button.visible = false
+			highway_button.visible = false
+			road_button.visible = false
 
 func update_road_type_ui():
 	"""更新道路类型按钮状态"""

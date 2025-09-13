@@ -35,7 +35,7 @@ func _ready():
 		building_selector.mode_changed.connect(_on_build_mode_changed)
 		building_selector.road_type_changed.connect(_on_road_type_changed)
 
-func _process(delta):
+func _process(_delta):
 	# 更新游戏时间
 	update_time_display()
 	
@@ -113,6 +113,9 @@ func _on_build_mode_changed(mode):
 		1: # BuildMode.ROAD
 			current_build_mode = "道路模式"
 			current_road_type = "铁路"  # 默认道路类型
+		2: # BuildMode.DELETE
+			current_build_mode = "删除模式"
+			current_road_type = ""
 	update_build_type_display()
 
 func _on_road_type_changed(road_type):
