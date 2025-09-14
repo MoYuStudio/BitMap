@@ -2,7 +2,7 @@ extends Sprite2D
 
 # 层引用
 var terrain_layer: TileMapLayer
-var city_layer: Node2D  # 现在是Node2D而不是TileMapLayer
+var city_layer: TileMapLayer  # 现在是TileMapLayer
 var road_layer: Node2D  # 道路层
 var building_selector: CanvasLayer
 
@@ -170,11 +170,11 @@ func handle_delete_mode(tile_pos: Vector2i):
 		if road_layer and road_layer.remove_road_at_position(mouse_pos):
 			last_processed_tile = tile_pos
 			print("删除模式: 在位置 ", mouse_pos, " 移除道路")
-		# 如果没有道路，尝试删除城市
-		elif city_layer and city_layer.get_city_at_position(tile_pos):
+		# 如果没有道路，尝试删除城市实例或城市地块
+		elif city_layer and city_layer.has_city_or_city_tile_at_position(tile_pos):
 			city_layer.remove_city_at_position(tile_pos)
 			last_processed_tile = tile_pos
-			print("删除模式: 在位置 ", tile_pos, " 移除城市")
+			print("删除模式: 在位置 ", tile_pos, " 移除城市实例或城市地块")
 
 func _on_build_mode_changed(new_mode):
 	# 更新建造模式

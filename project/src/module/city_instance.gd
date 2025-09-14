@@ -3,6 +3,7 @@ extends Node2D
 # 城市数据
 var city_name: String = ""
 var city_position: Vector2i
+var city_level: int = 0
 var city_data: Dictionary = {}
 
 # UI引用
@@ -17,8 +18,8 @@ func _ready():
 	# 设置点击检测
 	set_process_input(true)
 
-func set_city_data(name: String, pos: Vector2i, data: Dictionary = {}):
-	city_name = name
+func set_city_data(city_name_param: String, pos: Vector2i, data: Dictionary = {}):
+	city_name = city_name_param
 	city_position = pos
 	city_data = data
 	
@@ -48,5 +49,16 @@ func get_city_info() -> Dictionary:
 	return {
 		"name": city_name,
 		"position": city_position,
+		"level": city_level,
 		"data": city_data
 	}
+
+func update_city_display():
+	# 更新城市显示（根据等级调整外观）
+	if city_label:
+		city_label.text = city_name + " (Lv." + str(city_level) + ")"
+	
+	# 根据等级调整城市精灵的缩放
+	if city_sprite:
+		var scale_factor = 1.0 + (city_level * 0.1)  # 每级增加10%大小
+		city_sprite.scale = Vector2(scale_factor, scale_factor)

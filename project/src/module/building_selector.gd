@@ -19,6 +19,7 @@ var road_button: Button
 var paint_button: Button
 var road_mode_button: Button
 var delete_button: Button
+var spread_toggle_button: Button
 
 # 城市瓦片的source_id
 const CITY_SOURCE_ID = 2
@@ -40,12 +41,22 @@ func _ready():
 	paint_button = get_node("Selector/VBoxContainer/ModeContainer/PaintButton")
 	road_mode_button = get_node("Selector/VBoxContainer/ModeContainer/RoadButton")
 	delete_button = get_node("Selector/VBoxContainer/ModeContainer/DeleteButton")
+	# 尝试获取蔓延开关按钮（适应不同的场景结构）
+	if has_node("UI/VBoxContainer/SpreadToggleButton"):
+		spread_toggle_button = get_node("UI/VBoxContainer/SpreadToggleButton")
+	elif has_node("Selector/VBoxContainer/SpreadToggleButton"):
+		spread_toggle_button = get_node("Selector/VBoxContainer/SpreadToggleButton")
+	else:
+		spread_toggle_button = null
 	
 	# 连接按钮信号
 	connect_buttons()
 	
 	# 更新UI状态
 	update_ui_state()
+	
+	# 初始化蔓延按钮显示
+	update_spread_button_display()
 
 func connect_buttons():
 	# 连接建筑类型按钮
@@ -58,6 +69,10 @@ func connect_buttons():
 	paint_button.pressed.connect(_on_mode_button_pressed.bind(BuildMode.PAINT))
 	road_mode_button.pressed.connect(_on_mode_button_pressed.bind(BuildMode.ROAD))
 	delete_button.pressed.connect(_on_mode_button_pressed.bind(BuildMode.DELETE))
+	
+	# 连接蔓延开关按钮
+	if spread_toggle_button:
+		spread_toggle_button.pressed.connect(_on_spread_toggle_pressed)
 
 func _on_city_button_pressed():
 	print("选择建筑: 城市")
@@ -137,6 +152,24 @@ func get_current_mode() -> BuildMode:
 
 func get_current_road_type() -> Road.RoadType:
 	return current_road_type
+
+func _on_spread_toggle_pressed():
+	# 切换城市蔓延开关
+	var city_layer = get_node("../GameWorld/CityLayer")
+	if city_layer and city_layer.has_method("toggle_spread"):
+		city_layer.toggle_spread()
+		update_spread_button_display()
+
+func update_spread_button_display():
+	# 更新蔓延开关按钮显示
+	if not spread_toggle_button:
+		return
+	
+	var city_layer = get_node("../GameWorld/CityLayer")
+	if city_layer and city_layer.has_method("is_spread_enabled"):
+		var is_enabled = city_layer.is_spread_enabled()
+		spread_toggle_button.text = "蔓延: " + ("开启" if is_enabled else "关闭")
+		spread_toggle_button.modulate = Color.GREEN if is_enabled else Color.RED
 
 func is_mouse_over_ui() -> bool:
 	# 检查鼠标是否在UI区域内

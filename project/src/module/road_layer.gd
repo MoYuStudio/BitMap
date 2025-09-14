@@ -25,7 +25,7 @@ var highway_texture: Texture2D
 var road_texture: Texture2D
 
 # 层引用
-var city_layer: Node2D
+var city_layer: TileMapLayer
 var terrain_layer: TileMapLayer
 
 # 道路线段节点
@@ -68,7 +68,7 @@ func start_road_drawing(from_position: Vector2, from_city: Node2D = null, road_t
 		Road.RoadType.ROAD:
 			road_type_name = "公路"
 	if from_city:
-		print("开始绘制", road_type_name, "，起始城市: ", from_city.city_name)
+		print("开始绘制", road_type_name, "，起始城市: ", get_city_name(from_city))
 	else:
 		print("开始绘制", road_type_name, "，起始位置: ", snapped_position)
 
@@ -130,7 +130,7 @@ func end_road_drawing(end_city: Node2D = null):
 				road_type_name = "高速公路"
 			Road.RoadType.ROAD:
 				road_type_name = "公路"
-		print("结束绘制", road_type_name, "，终点城市: ", end_city.city_name)
+		print("结束绘制", road_type_name, "，终点城市: ", get_city_name(end_city))
 	
 	# 如果道路有足够的点，保存它
 	if current_road.size() >= 2:
@@ -170,14 +170,23 @@ func get_city_at_position(world_position: Vector2) -> Node2D:
 	if not city_layer:
 		return null
 	
-	# 遍历所有城市，检查是否在点击范围内
-	for city_pos in city_layer.cities.keys():
-		var city = city_layer.cities[city_pos]
-		if city:
-			# 检查点击是否在城市范围内（城市大小为16x16）
-			var city_rect = Rect2(city.global_position - Vector2(8, 8), Vector2(16, 16))
-			if city_rect.has_point(world_position):
-				return city
+	# 将世界坐标转换为瓦片坐标
+	var tile_pos = terrain_layer.local_to_map(terrain_layer.to_local(world_position))
+	
+	# 检查该位置是否有城市实例
+	var city_instance = city_layer.get_city_at_position(tile_pos)
+	if city_instance:
+		# 直接返回城市实例（用于道路连接）
+		return city_instance
+	
+	# 检查该位置是否有城市地块（瓦片）
+	if city_layer.get_cell_source_id(tile_pos) != -1:
+		# 创建一个临时的Node2D来表示城市地块（用于道路连接）
+		var city_tile_node = Node2D.new()
+		city_tile_node.global_position = terrain_layer.to_global(terrain_layer.map_to_local(tile_pos))
+		# 使用set_meta来存储城市名称，因为Node2D没有city_name属性
+		city_tile_node.set_meta("city_name", "城市地块")
+		return city_tile_node
 	
 	return null
 
@@ -407,6 +416,15 @@ func get_road_texture(road_type: Road.RoadType) -> Texture2D:
 		Road.RoadType.ROAD:
 			return road_texture
 	return null
+
+func get_city_name(city_node: Node2D) -> String:
+	"""获取城市名称，兼容城市实例和城市地块"""
+	if city_node.has_method("get") and "city_name" in city_node:
+		return city_node.city_name
+	elif city_node.has_meta("city_name"):
+		return city_node.get_meta("city_name")
+	else:
+		return "未知城市"
 
 func calculate_line_length(points: Array[Vector2]) -> float:
 	"""计算线条的总长度"""

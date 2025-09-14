@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d01al8m7n6p5q"]
+[gd_scene load_steps=15 format=3 uid="uid://d01al8m7n6p5q"]
 
 [ext_resource type="TileSet" uid="uid://cxftojto2pcc2" path="res://assets/tile_set.tres" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dteak71k8ajlu" path="res://src/module/terrain_layer.gd" id="2_terrain"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b3fne5t8y1wc3" path="res://assets/highway.png" id="11_highway_icon"]
 [ext_resource type="Texture2D" uid="uid://chb5033atl8y" path="res://assets/road.png" id="12_road_icon"]
 [ext_resource type="Script" uid="uid://br4q3qtyjy32n" path="res://src/scene/game.gd" id="13_game"]
+[ext_resource type="TileSet" uid="uid://bl4lhbgqcwkiv" path="res://assets/city_tile_set.tres" id="14_city_tiles"]
 
 [node name="GameScene" type="Control"]
 layout_mode = 3
@@ -29,11 +30,12 @@ script = ExtResource("13_game")
 tile_set = ExtResource("1_ig7tw")
 script = ExtResource("2_terrain")
 
+[node name="CityLayer" type="TileMapLayer" parent="GameWorld"]
+tile_set = ExtResource("14_city_tiles")
+script = ExtResource("3_city")
+
 [node name="RoadLayer" type="Node2D" parent="GameWorld"]
 script = ExtResource("8_road")
-
-[node name="CityLayer" type="Node2D" parent="GameWorld"]
-script = ExtResource("3_city")
 
 [node name="Camera2D" type="Camera2D" parent="GameWorld"]
 position_smoothing_enabled = true
@@ -124,6 +126,11 @@ text = "道路模式"
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 text = "删除模式"
+
+[node name="SpreadToggleButton" type="Button" parent="CanvasLayer/Selector/VBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+text = "蔓延: 开启"
 
 [node name="TopPanel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 10

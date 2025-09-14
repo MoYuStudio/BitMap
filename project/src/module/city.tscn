@@ -4,14 +4,16 @@
 [ext_resource type="Script" uid="uid://bp3xk2fy4p05t" path="res://src/module/city_instance.gd" id="2_city_script"]
 
 [node name="City" type="Node2D"]
+z_index = 999
 script = ExtResource("2_city_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_hpa3k")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -15.0
-offset_top = -35.0
-offset_right = 15.0
-offset_bottom = -12.0
+offset_left = -21.0
+offset_top = -58.0
+offset_right = 23.0
+offset_bottom = -24.0
+theme_override_font_sizes/font_size = 24
 text = "City"
